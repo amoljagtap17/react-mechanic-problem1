@@ -2,12 +2,12 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import CssBaseline from "@mui/material/CssBaseline";
 
-import { Container } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 
 import { createEmotionCache, theme } from "app/mui";
-import { Header } from "components/sections";
+import { Header, Footer } from "components/sections";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -34,10 +34,13 @@ function MyApp(props: MyAppProps) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
 
-        <Header />
-        <Container maxWidth="lg">
-          <Component {...pageProps} />
-        </Container>
+        <Stack sx={{ minHeight: "100vh" }}>
+          <Header />
+          <Container maxWidth="lg" sx={{ flexGrow: 1, position: "relative" }}>
+            <Component {...pageProps} />
+          </Container>
+          <Footer />
+        </Stack>
       </ThemeProvider>
     </CacheProvider>
   );

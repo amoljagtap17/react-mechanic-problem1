@@ -4,7 +4,14 @@ import { Intro, Login } from "components/sections";
 
 const HomePage: NextPage = () => {
   return (
-    <Grid container>
+    <Grid
+      container
+      spacing={2}
+      minHeight="75vh"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
       <Grid item xs={12} md={6}>
         <Intro />
       </Grid>

@@ -21,6 +21,8 @@ interface IHeaderProps {
   window?: () => Window;
 }
 
+/* const Offset = styled('div')(({ theme }) => theme.mixins.toolbar); */
+
 const drawerWidth = 240;
 const navItems = [
   { label: "Home", href: "/" },

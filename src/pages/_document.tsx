@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
             crossOrigin="true"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Playfair+Display&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Poppins:wght@400;500;700&display=swap"
             rel="stylesheet"
           />
           <meta name="emotion-insertion-point" content="" />

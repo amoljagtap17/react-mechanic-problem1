@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 
 export const IntroText = styled(Typography)<TypographyProps>(({ theme }) => ({
   fontWeight: 400,
-  fontFamily: "'Permanent Marker', cursive",
+  fontFamily: "'Poppins', sans-serif",
   [theme.breakpoints.up("xs")]: {
     fontSize: "3rem",
   },
