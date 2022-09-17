@@ -32,6 +32,13 @@ const _theme = createTheme({
         },
       },
     },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
+        },
+      },
+    },
     MuiButtonBase: {
       defaultProps: {
         disableRipple: true,
@@ -66,6 +73,24 @@ const _theme = createTheme({
         root: {
           boxShadow: "0px 3px 15px -10px rgb(0 0 0 / 50%)",
         },
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          fontWeight: 600,
+        },
+      },
+    },
+    MuiPopper: {
+      defaultProps: {
+        disablePortal: true,
+        keepMounted: true,
+      },
+    },
+    MuiPopover: {
+      defaultProps: {
+        elevation: 0,
       },
     },
   },
