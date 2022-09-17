@@ -1,9 +1,9 @@
 import { Grid } from "@mui/material";
 import { StatsCard } from "components/lib";
 
-export const ManagerDashboard = () => {
+export const Dashboard = () => {
   return (
-    <Grid container padding={2} marginY={2} spacing={4}>
+    <Grid container spacing={4}>
       <Grid item xs={12} md={4}>
         <StatsCard label="Available Capacity" count={1000} />
       </Grid>

@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
-import { ManagerDashboard } from "components/sections";
+import { Navigation } from "components/sections";
 
 const HomePage: NextPage = () => {
-  return <ManagerDashboard />;
+  return <Navigation />;
 };
 
 export default HomePage;
