@@ -21,6 +21,17 @@ const _theme = createTheme({
     },
   },
   components: {
+    MuiPaper: {
+      defaultProps: {
+        elevation: 0,
+        square: true,
+      },
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
+        },
+      },
+    },
     MuiButtonBase: {
       defaultProps: {
         disableRipple: true,
@@ -33,6 +44,12 @@ const _theme = createTheme({
         disableFocusRipple: true,
         disableRipple: true,
         disableTouchRipple: true,
+        size: "large",
+      },
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
+        },
       },
     },
     MuiTextField: {

@@ -25,7 +25,7 @@ interface IHeaderProps {
 
 const drawerWidth = 240;
 const navItems = [
-  { label: "Home", href: "/" },
+  { label: "Home", href: "/home" },
   { label: "Contact Us", href: "/contact" },
 ];
 

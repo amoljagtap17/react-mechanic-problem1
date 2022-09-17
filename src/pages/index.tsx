@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { Grid } from "@mui/material";
 import { Intro, Login } from "components/sections";
 
-const HomePage: NextPage = () => {
+const LandingPage: NextPage = () => {
   return (
     <Grid
       container
@@ -22,4 +22,4 @@ const HomePage: NextPage = () => {
   );
 };
 
-export default HomePage;
+export default LandingPage;
