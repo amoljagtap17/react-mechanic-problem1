@@ -7,6 +7,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 
 import { createEmotionCache, theme } from "app/mui";
+import { Header } from "components/sections";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -33,6 +34,7 @@ function MyApp(props: MyAppProps) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
 
+        <Header />
         <Container maxWidth="lg">
           <Component {...pageProps} />
         </Container>
