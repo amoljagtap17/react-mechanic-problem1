@@ -9,10 +9,6 @@ export default class MyDocument extends Document {
         <Head>
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="shortcut icon" href="/favicon.ico" />
-          {/* <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          /> */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"
@@ -20,7 +16,7 @@ export default class MyDocument extends Document {
             crossOrigin="true"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Playfair+Display&display=swap"
             rel="stylesheet"
           />
           <meta name="emotion-insertion-point" content="" />

@@ -1,8 +1,18 @@
 import type { NextPage } from "next";
-import { Typography } from "@mui/material";
+import { Grid } from "@mui/material";
+import { Intro, Login } from "components/sections";
 
 const HomePage: NextPage = () => {
-  return <Typography variant="h1">Home Page Content!</Typography>;
+  return (
+    <Grid container>
+      <Grid item xs={12} md={6}>
+        <Intro />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <Login />
+      </Grid>
+    </Grid>
+  );
 };
 
 export default HomePage;
