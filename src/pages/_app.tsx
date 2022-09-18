@@ -6,6 +6,8 @@ import { Container, Stack } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 
+import { SessionProvider } from "next-auth/react";
+
 import { createEmotionCache, theme } from "app/mui";
 import { Header, Footer } from "components/sections";
 
@@ -19,7 +21,8 @@ function MyApp(props: MyAppProps) {
   const {
     Component,
     emotionCache = clientSideEmotionCache,
-    ...pageProps
+    // @ts-ignore
+    pageProps: { session, ...pageProps },
   } = props;
 
   return (
@@ -34,13 +37,15 @@ function MyApp(props: MyAppProps) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
 
-        <Stack sx={{ minHeight: "100vh" }}>
-          <Header />
-          <Container maxWidth="lg" sx={{ flexGrow: 1, position: "relative" }}>
-            <Component {...pageProps} />
-          </Container>
-          <Footer />
-        </Stack>
+        <SessionProvider session={session}>
+          <Stack sx={{ minHeight: "100vh" }}>
+            <Header />
+            <Container maxWidth="lg" sx={{ flexGrow: 1, position: "relative" }}>
+              <Component {...pageProps} />
+            </Container>
+            <Footer />
+          </Stack>
+        </SessionProvider>
       </ThemeProvider>
     </CacheProvider>
   );

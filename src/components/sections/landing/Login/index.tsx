@@ -6,6 +6,7 @@ import {
   Button,
   TextField,
 } from "@mui/material";
+import { signIn } from "next-auth/react";
 
 export const Login = () => {
   return (
@@ -15,7 +16,14 @@ export const Login = () => {
         <TextField label="Email" />
       </CardContent>
       <CardActions>
-        <Button variant="contained">Login</Button>
+        <Button
+          variant="contained"
+          onClick={() =>
+            signIn("credentials", { email: "u", callbackUrl: "/home" })
+          }
+        >
+          Login
+        </Button>
       </CardActions>
     </Card>
   );
