@@ -37,6 +37,9 @@ export default NextAuth({
         where: {
           email,
         },
+        include: {
+          department: true,
+        },
       });
 
       params.session.user = user;

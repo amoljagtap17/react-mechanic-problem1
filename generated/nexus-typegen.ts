@@ -160,6 +160,7 @@ export interface NexusGenFieldTypes {
     buildings: NexusGenRootTypes['Building'][]; // [Building!]!
     capacity: NexusGenRootTypes['Capacity'][]; // [Capacity!]!
     departments: NexusGenRootTypes['Department'][]; // [Department!]!
+    departmentsForCurrentUser: NexusGenRootTypes['Department'][]; // [Department!]!
     divisions: NexusGenRootTypes['Division'][]; // [Division!]!
     floors: NexusGenRootTypes['Floor'][]; // [Floor!]!
     seatCount: number; // Int!
@@ -238,6 +239,7 @@ export interface NexusGenFieldTypeNames {
     buildings: 'Building'
     capacity: 'Capacity'
     departments: 'Department'
+    departmentsForCurrentUser: 'Department'
     divisions: 'Division'
     floors: 'Floor'
     seatCount: 'Int'
@@ -273,6 +275,11 @@ export interface NexusGenArgTypes {
   Mutation: {
     createCapacity: { // args
       data: NexusGenInputs['CapacityInputType']; // CapacityInputType!
+    }
+  }
+  Query: {
+    departmentsForCurrentUser: { // args
+      departmentName: string; // String!
     }
   }
 }

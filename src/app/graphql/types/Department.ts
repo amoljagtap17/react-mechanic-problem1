@@ -1,4 +1,4 @@
-import { objectType, extendType } from "nexus";
+import { objectType, extendType, nonNull, stringArg } from "nexus";
 
 export const Department = objectType({
   name: "Department",
@@ -45,6 +45,24 @@ export const DepartmentQuery = extendType({
       description: "Get all Departments details",
       resolve(_parent, _args, { prisma }) {
         return prisma.department.findMany();
+      },
+    });
+    t.nonNull.list.nonNull.field("departmentsForCurrentUser", {
+      type: "Department",
+      args: { departmentName: nonNull(stringArg()) },
+      description: "Get all child Departments for current user",
+      async resolve(_parent, { departmentName }, { prisma }) {
+        const data = await prisma.department.findMany({
+          where: {
+            departmentName: {
+              startsWith: departmentName,
+            },
+          },
+        });
+
+        return data.filter(
+          (item) => item.departmentName.length === departmentName.length + 1
+        );
       },
     });
   },

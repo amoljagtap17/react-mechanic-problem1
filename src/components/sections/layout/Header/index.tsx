@@ -72,13 +72,19 @@ export const Header = (props: IHeaderProps) => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-            >
-              SAT
-            </Typography>
+            <Link href="/" passHref={true}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", sm: "block" },
+                  cursor: "pointer",
+                }}
+              >
+                SAT
+              </Typography>
+            </Link>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               {navItems.map((item) => (
                 <Link href={item.href} passHref={true} key={item.label}>
