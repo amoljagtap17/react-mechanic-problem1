@@ -12,6 +12,7 @@ import {
 import { useSession } from "next-auth/react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { useGetManagerFormData } from "./useGetManagerFormData";
+import { useCreateAllocation } from "./useCreateAllocation";
 
 interface IFormInput {
   departmentId: string;
@@ -35,6 +36,8 @@ export const ManagerAllocationForm = () => {
 
   const departmentName = session?.user.department.departmentName || "";
   const getManagerFormData = useGetManagerFormData(departmentName);
+
+  const [createAllocation, { loading }] = useCreateAllocation();
 
   if (getManagerFormData.loading) {
     return <h1>Loading...</h1>;
@@ -64,16 +67,14 @@ export const ManagerAllocationForm = () => {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
-
-    /* createCapacity({
+    createAllocation({
       variables: {
         data: { ...data, capacity: parseInt(data.capacity) },
       },
       onCompleted() {
         reset();
       },
-    }); */
+    });
   };
 
   return (
@@ -172,7 +173,7 @@ export const ManagerAllocationForm = () => {
           </FormControl>
         </Grid>
         <Grid item xs={12}>
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" disabled={loading}>
             Allocate
           </Button>
         </Grid>

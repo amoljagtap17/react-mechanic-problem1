@@ -13,7 +13,7 @@ export const Allocations = ({ role }: IAllocationsProps) => {
         <AllocationForm role={role} />
       </Grid>
       <Grid item xs={12} lg={6}>
-        <AllocationList />
+        <AllocationList role={role} />
       </Grid>
     </Grid>
   );

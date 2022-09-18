@@ -6,3 +6,4 @@ export * from "./Wing";
 export * from "./Division";
 export * from "./Department";
 export * from "./Capacity";
+export * from "./Allocation";

@@ -29,6 +29,13 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  AllocationInputType: { // input type
+    buildingId: string; // String!
+    capacity: number; // Int!
+    departmentId: string; // String!
+    floorId: string; // String!
+    wingId: string; // String!
+  }
   CapacityInputType: { // input type
     buildingId: string; // String!
     capacity: number; // Int!
@@ -51,6 +58,15 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Allocation: { // root type
+    buildingId: string; // String!
+    capacity: number; // Int!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    departmentId: string; // String!
+    floorId: string; // String!
+    id: string; // String!
+    wingId: string; // String!
+  }
   Building: { // root type
     buildingName: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -114,6 +130,20 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Allocation: { // field return type
+    assignedAllocation: number | null; // Int
+    building: NexusGenRootTypes['Building'] | null; // Building
+    buildingId: string; // String!
+    capacity: number; // Int!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    department: NexusGenRootTypes['Department'] | null; // Department
+    departmentId: string; // String!
+    floor: NexusGenRootTypes['Floor'] | null; // Floor
+    floorId: string; // String!
+    id: string; // String!
+    wing: NexusGenRootTypes['Wing'] | null; // Wing
+    wingId: string; // String!
+  }
   Building: { // field return type
     buildingName: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -154,9 +184,11 @@ export interface NexusGenFieldTypes {
     wings: NexusGenRootTypes['Wing'][]; // [Wing!]!
   }
   Mutation: { // field return type
+    createAllocation: NexusGenRootTypes['Allocation']; // Allocation!
     createCapacity: NexusGenRootTypes['Capacity']; // Capacity!
   }
   Query: { // field return type
+    allocations: NexusGenRootTypes['Allocation'][]; // [Allocation!]!
     buildings: NexusGenRootTypes['Building'][]; // [Building!]!
     capacity: NexusGenRootTypes['Capacity'][]; // [Capacity!]!
     departments: NexusGenRootTypes['Department'][]; // [Department!]!
@@ -193,6 +225,20 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Allocation: { // field return type name
+    assignedAllocation: 'Int'
+    building: 'Building'
+    buildingId: 'String'
+    capacity: 'Int'
+    createdAt: 'DateTime'
+    department: 'Department'
+    departmentId: 'String'
+    floor: 'Floor'
+    floorId: 'String'
+    id: 'String'
+    wing: 'Wing'
+    wingId: 'String'
+  }
   Building: { // field return type name
     buildingName: 'String'
     createdAt: 'DateTime'
@@ -233,9 +279,11 @@ export interface NexusGenFieldTypeNames {
     wings: 'Wing'
   }
   Mutation: { // field return type name
+    createAllocation: 'Allocation'
     createCapacity: 'Capacity'
   }
   Query: { // field return type name
+    allocations: 'Allocation'
     buildings: 'Building'
     capacity: 'Capacity'
     departments: 'Department'
@@ -273,6 +321,9 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    createAllocation: { // args
+      data: NexusGenInputs['AllocationInputType']; // AllocationInputType!
+    }
     createCapacity: { // args
       data: NexusGenInputs['CapacityInputType']; // CapacityInputType!
     }

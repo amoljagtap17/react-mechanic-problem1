@@ -1,14 +1,14 @@
 import { gql, useQuery } from "@apollo/client";
 
-const GET_CAPACITY_DATA = gql`
-  query getCapacity {
-    capacity {
+const GET_ALLOCATION_DATA = gql`
+  query getAllocation {
+    allocations {
       id
       capacity
       createdAt
-      division {
+      department {
         id
-        divisionName
+        departmentName
       }
       building {
         id
@@ -26,6 +26,6 @@ const GET_CAPACITY_DATA = gql`
   }
 `;
 
-export const useCapacityData = () => {
-  return useQuery(GET_CAPACITY_DATA);
+export const useManagerAllocationData = () => {
+  return useQuery(GET_ALLOCATION_DATA);
 };

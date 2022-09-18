@@ -141,3 +141,15 @@ model Capacity {
 
   @@map("capacity")
 }
+
+model Allocation {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt    DateTime @default(now()) @map("created_at")
+  departmentId String   @db.ObjectId
+  buildingId   String   @db.ObjectId
+  floorId      String   @db.ObjectId
+  wingId       String   @db.ObjectId
+  capacity     Int
+
+  @@map("allocations")
+}
