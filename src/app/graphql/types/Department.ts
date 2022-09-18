@@ -8,6 +8,32 @@ export const Department = objectType({
       description: "Name of the Department",
     });
     t.nonNull.date("createdAt", { description: "Created Date" });
+    t.field("division", {
+      description: "Division Info",
+      type: "Division",
+      async resolve(parent, _args, { prisma }) {
+        return await prisma.department
+          .findUnique({
+            where: {
+              id: parent.id,
+            },
+          })
+          .division();
+      },
+    });
+    t.nonNull.list.nonNull.field("users", {
+      description: "Users Info",
+      type: "User",
+      async resolve(parent, _args, { prisma }) {
+        return await prisma.department
+          .findUnique({
+            where: {
+              id: parent.id,
+            },
+          })
+          .users();
+      },
+    });
   },
 });
 

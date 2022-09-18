@@ -105,10 +105,13 @@ export interface NexusGenFieldTypes {
   Department: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     departmentName: string; // String!
+    division: NexusGenRootTypes['Division'] | null; // Division
     id: string; // String!
+    users: NexusGenRootTypes['User'][]; // [User!]!
   }
   Division: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
+    departments: NexusGenRootTypes['Department'][]; // [Department!]!
     divisionName: string; // String!
     id: string; // String!
   }
@@ -134,7 +137,7 @@ export interface NexusGenFieldTypes {
   }
   User: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
-    department: NexusGenRootTypes['Department']; // Department!
+    department: NexusGenRootTypes['Department'] | null; // Department
     email: string | null; // String
     emailVerified: NexusGenScalars['DateTime'] | null; // DateTime
     id: string; // String!
@@ -159,10 +162,13 @@ export interface NexusGenFieldTypeNames {
   Department: { // field return type name
     createdAt: 'DateTime'
     departmentName: 'String'
+    division: 'Division'
     id: 'String'
+    users: 'User'
   }
   Division: { // field return type name
     createdAt: 'DateTime'
+    departments: 'Department'
     divisionName: 'String'
     id: 'String'
   }

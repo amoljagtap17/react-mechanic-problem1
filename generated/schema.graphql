@@ -28,13 +28,22 @@ type Department {
   """Name of the Department"""
   departmentName: String!
 
+  """Division Info"""
+  division: Division
+
   """ID of the Division"""
   id: String!
+
+  """Users Info"""
+  users: [User!]!
 }
 
 type Division {
   """Created Date"""
   createdAt: DateTime!
+
+  """Departments Info"""
+  departments: [Department!]!
 
   """Name of the Division"""
   divisionName: String!
@@ -93,7 +102,7 @@ type User {
   createdAt: DateTime!
 
   """Department Info"""
-  department: Department!
+  department: Department
 
   """Email of the user"""
   email: String
