@@ -9,6 +9,17 @@ export const User = objectType({
     t.string("image", { description: "Image of the user" });
     t.nonNull.date("createdAt", { description: "Created Date" });
     t.date("emailVerified", { description: "Email verified Date" });
+    t.nonNull.field("department", {
+      description: "Department Info",
+      type: "Department",
+      async resolve(parent, _args, { prisma }) {
+        return await prisma.wing.findMany({
+          where: {
+            floorId: parent.id,
+          },
+        });
+      },
+    });
   },
 });
 

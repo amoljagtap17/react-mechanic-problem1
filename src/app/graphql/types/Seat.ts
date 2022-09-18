@@ -1,4 +1,4 @@
-import { objectType, extendType, asNexusMethod } from "nexus";
+import { objectType, extendType } from "nexus";
 
 export const Seat = objectType({
   name: "Seat",

@@ -49,6 +49,16 @@ export interface NexusGenObjects {
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
   }
+  Department: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    departmentName: string; // String!
+    id: string; // String!
+  }
+  Division: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    divisionName: string; // String!
+    id: string; // String!
+  }
   Floor: { // root type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     floorNo: number; // Int!
@@ -92,6 +102,16 @@ export interface NexusGenFieldTypes {
     floors: NexusGenRootTypes['Floor'][]; // [Floor!]!
     id: string; // String!
   }
+  Department: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    departmentName: string; // String!
+    id: string; // String!
+  }
+  Division: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    divisionName: string; // String!
+    id: string; // String!
+  }
   Floor: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     floorNo: number; // Int!
@@ -100,6 +120,8 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     buildings: NexusGenRootTypes['Building'][]; // [Building!]!
+    departments: NexusGenRootTypes['Department'][]; // [Department!]!
+    divisions: NexusGenRootTypes['Division'][]; // [Division!]!
     floors: NexusGenRootTypes['Floor'][]; // [Floor!]!
     seats: NexusGenRootTypes['Seat'][]; // [Seat!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
@@ -112,6 +134,7 @@ export interface NexusGenFieldTypes {
   }
   User: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
+    department: NexusGenRootTypes['Department']; // Department!
     email: string | null; // String
     emailVerified: NexusGenScalars['DateTime'] | null; // DateTime
     id: string; // String!
@@ -133,6 +156,16 @@ export interface NexusGenFieldTypeNames {
     floors: 'Floor'
     id: 'String'
   }
+  Department: { // field return type name
+    createdAt: 'DateTime'
+    departmentName: 'String'
+    id: 'String'
+  }
+  Division: { // field return type name
+    createdAt: 'DateTime'
+    divisionName: 'String'
+    id: 'String'
+  }
   Floor: { // field return type name
     createdAt: 'DateTime'
     floorNo: 'Int'
@@ -141,6 +174,8 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     buildings: 'Building'
+    departments: 'Department'
+    divisions: 'Division'
     floors: 'Floor'
     seats: 'Seat'
     users: 'User'
@@ -153,6 +188,7 @@ export interface NexusGenFieldTypeNames {
   }
   User: { // field return type name
     createdAt: 'DateTime'
+    department: 'Department'
     email: 'String'
     emailVerified: 'DateTime'
     id: 'String'

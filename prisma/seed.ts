@@ -28,8 +28,12 @@ async function main() {
 
   const codes = ["MB", "MC", "MQ", "MR", "MJ"];
 
+  let k = 0;
+
   for (let i = 0; i < codes.length; i++) {
-    const divisionId = divisionIds[i > 3 ? i - 4 : i].id;
+    k = k < divisionIds.length ? k : 0;
+
+    const divisionId = divisionIds[k].id;
 
     console.log("divisionId::", divisionId);
 
@@ -64,14 +68,17 @@ async function main() {
 
   console.log("seeding users...");
 
+  let j = 0;
+
   for (let i = 0; i < 100; i++) {
+    j = j < totalDepartments ? j : 0;
+
     await prisma.user.create({
       data: {
         email: faker.internet.email().toLowerCase(),
         image: faker.internet.avatar(),
         name: faker.name.fullName(),
-        departmentId:
-          departments[Math.floor(Math.random() * totalDepartments)].id,
+        departmentId: departments[j++].id,
       },
     });
   }
