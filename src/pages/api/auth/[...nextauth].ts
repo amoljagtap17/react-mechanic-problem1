@@ -31,7 +31,6 @@ export default NextAuth({
   },
   callbacks: {
     async session(params) {
-      console.log("session2::", params);
       const email = params.session.user?.email;
 
       const user = await prisma.user.findUnique({

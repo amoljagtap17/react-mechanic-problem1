@@ -43,7 +43,7 @@ export const Navigation = () => {
       </TabPanel>
       {(role === "ADMIN" || role === "CENTRAL") && (
         <TabPanel value={value} index={1}>
-          <Allocations />
+          <Allocations role={role} />
         </TabPanel>
       )}
       {role === "USER" && (

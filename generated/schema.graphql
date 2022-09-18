@@ -16,6 +16,34 @@ type Building {
   id: String!
 }
 
+type Capacity {
+  """Building ID"""
+  buildingId: String!
+
+  """Created Date"""
+  createdAt: DateTime!
+
+  """Division ID"""
+  divisionId: String!
+
+  """Floor ID"""
+  floorId: String!
+
+  """ID of the Seat"""
+  id: String!
+
+  """Wing ID"""
+  wingId: String!
+}
+
+input CapacityInputType {
+  buildingId: String!
+  capacity: Int!
+  divisionId: String!
+  floorId: String!
+  wingId: String!
+}
+
 """
 A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 """
@@ -66,8 +94,15 @@ type Floor {
   wings: [Wing!]!
 }
 
+type Mutation {
+  createCapacity(data: CapacityInputType!): Capacity!
+}
+
 type Query {
   buildings: [Building!]!
+
+  """Get all Capacity details"""
+  capacity: [Capacity!]!
 
   """Get all Departments details"""
   departments: [Department!]!

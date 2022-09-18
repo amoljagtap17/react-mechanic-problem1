@@ -29,6 +29,13 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  CapacityInputType: { // input type
+    buildingId: string; // String!
+    capacity: number; // Int!
+    divisionId: string; // String!
+    floorId: string; // String!
+    wingId: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -49,6 +56,14 @@ export interface NexusGenObjects {
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
   }
+  Capacity: { // root type
+    buildingId: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    divisionId: string; // String!
+    floorId: string; // String!
+    id: string; // String!
+    wingId: string; // String!
+  }
   Department: { // root type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     departmentName: string; // String!
@@ -64,6 +79,7 @@ export interface NexusGenObjects {
     floorNo: number; // Int!
     id: string; // String!
   }
+  Mutation: {};
   Query: {};
   Seat: { // root type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -103,6 +119,14 @@ export interface NexusGenFieldTypes {
     floors: NexusGenRootTypes['Floor'][]; // [Floor!]!
     id: string; // String!
   }
+  Capacity: { // field return type
+    buildingId: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    divisionId: string; // String!
+    floorId: string; // String!
+    id: string; // String!
+    wingId: string; // String!
+  }
   Department: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     departmentName: string; // String!
@@ -122,8 +146,12 @@ export interface NexusGenFieldTypes {
     id: string; // String!
     wings: NexusGenRootTypes['Wing'][]; // [Wing!]!
   }
+  Mutation: { // field return type
+    createCapacity: NexusGenRootTypes['Capacity']; // Capacity!
+  }
   Query: { // field return type
     buildings: NexusGenRootTypes['Building'][]; // [Building!]!
+    capacity: NexusGenRootTypes['Capacity'][]; // [Capacity!]!
     departments: NexusGenRootTypes['Department'][]; // [Department!]!
     divisions: NexusGenRootTypes['Division'][]; // [Division!]!
     floors: NexusGenRootTypes['Floor'][]; // [Floor!]!
@@ -162,6 +190,14 @@ export interface NexusGenFieldTypeNames {
     floors: 'Floor'
     id: 'String'
   }
+  Capacity: { // field return type name
+    buildingId: 'String'
+    createdAt: 'DateTime'
+    divisionId: 'String'
+    floorId: 'String'
+    id: 'String'
+    wingId: 'String'
+  }
   Department: { // field return type name
     createdAt: 'DateTime'
     departmentName: 'String'
@@ -181,8 +217,12 @@ export interface NexusGenFieldTypeNames {
     id: 'String'
     wings: 'Wing'
   }
+  Mutation: { // field return type name
+    createCapacity: 'Capacity'
+  }
   Query: { // field return type name
     buildings: 'Building'
+    capacity: 'Capacity'
     departments: 'Department'
     divisions: 'Division'
     floors: 'Floor'
@@ -215,6 +255,11 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createCapacity: { // args
+      data: NexusGenInputs['CapacityInputType']; // CapacityInputType!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {
@@ -225,7 +270,7 @@ export interface NexusGenTypeInterfaces {
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = keyof NexusGenInputs;
 
 export type NexusGenEnumNames = never;
 
