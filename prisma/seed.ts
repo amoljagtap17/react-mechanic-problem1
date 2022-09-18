@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Role } from "@prisma/client";
 import { faker } from "@faker-js/faker";
 
 const prisma = new PrismaClient();
@@ -24,9 +24,24 @@ async function main() {
     });
   }
 
-  const divisionIds = await prisma.division.findMany({ select: { id: true } });
+  const centralDivision = await prisma.division.create({
+    data: {
+      divisionName: `central`,
+    },
+  });
+
+  const divisionIds = await prisma.division.findMany({
+    where: {
+      id: {
+        not: centralDivision.id,
+      },
+    },
+    select: { id: true },
+  });
 
   const codes = ["MB", "MC", "MQ", "MR", "MJ"];
+  const codes2 = ["A", "Q"];
+  const codes3 = ["R", "S", "T"];
 
   let k = 0;
 
@@ -44,18 +59,18 @@ async function main() {
       },
     });
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < codes2.length; i++) {
       const level2Department = await prisma.department.create({
         data: {
-          departmentName: level1Department.departmentName + "A",
+          departmentName: level1Department.departmentName + codes2[i],
           divisionId: level1Department.divisionId,
         },
       });
 
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < codes3.length; i++) {
         await prisma.department.create({
           data: {
-            departmentName: level2Department.departmentName + "D",
+            departmentName: level2Department.departmentName + codes3[i],
             divisionId: level2Department.divisionId,
           },
         });
@@ -66,7 +81,7 @@ async function main() {
   const departments = await prisma.department.findMany();
   const totalDepartments = departments.length;
 
-  console.log("seeding users...");
+  console.log(`seeding users for ${totalDepartments} departments...`);
 
   let j = 0;
 
@@ -82,6 +97,41 @@ async function main() {
       },
     });
   }
+
+  const selectDepartment = ["MB", "MCA", "MRQS"];
+
+  for (let i = 0; i < 3; i++) {
+    const admin = await prisma.user.findFirst({
+      where: { department: { departmentName: selectDepartment[i] } },
+    });
+
+    console.log(`admin for ${selectDepartment[i]}::`, admin?.name);
+
+    if (admin) {
+      await prisma.user.update({
+        data: {
+          role: Role.ADMIN,
+        },
+        where: {
+          id: admin.id,
+        },
+      });
+
+      console.log("Made Admin::", admin.id);
+    }
+  }
+
+  console.log("seeding central team user...");
+
+  await prisma.user.create({
+    data: {
+      email: faker.internet.email().toLowerCase(),
+      image: faker.internet.avatar(),
+      name: faker.name.fullName(),
+      departmentId: centralDivision.id,
+      role: Role.CENTRAL,
+    },
+  });
 
   console.log("seeding buildings and seats...");
 

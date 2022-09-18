@@ -37,6 +37,12 @@ model Session {
   @@map("sessions")
 }
 
+enum Role {
+  USER
+  ADMIN
+  CENTRAL
+}
+
 model User {
   id            String     @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
@@ -48,6 +54,7 @@ model User {
   sessions      Session[]
   department    Department @relation(fields: [departmentId], references: [id])
   departmentId  String     @db.ObjectId
+  role          Role       @default(USER)
 
   @@map("users")
 }
