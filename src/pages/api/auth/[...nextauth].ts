@@ -29,5 +29,21 @@ export default NextAuth({
   theme: {
     colorScheme: "auto",
   },
+  callbacks: {
+    async session(params) {
+      console.log("session2::", params);
+      const email = params.session.user?.email;
+
+      const user = await prisma.user.findUnique({
+        where: {
+          email,
+        },
+      });
+
+      params.session.user = user;
+
+      return params.session;
+    },
+  },
   debug: false,
 });
