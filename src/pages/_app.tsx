@@ -7,8 +7,10 @@ import { ThemeProvider } from "@mui/material/styles";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 
 import { SessionProvider } from "next-auth/react";
+import { ApolloProvider } from "@apollo/client";
 
 import { createEmotionCache, theme } from "app/mui";
+import { useApollo } from "app/apollo";
 import { Header, Footer } from "components/sections";
 
 const clientSideEmotionCache = createEmotionCache();
@@ -25,6 +27,8 @@ function MyApp(props: MyAppProps) {
     pageProps: { session, ...pageProps },
   } = props;
 
+  const apolloClient = useApollo(pageProps);
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -38,13 +42,18 @@ function MyApp(props: MyAppProps) {
         <CssBaseline />
 
         <SessionProvider session={session}>
-          <Stack sx={{ minHeight: "100vh" }}>
-            <Header />
-            <Container maxWidth="lg" sx={{ flexGrow: 1, position: "relative" }}>
-              <Component {...pageProps} />
-            </Container>
-            <Footer />
-          </Stack>
+          <ApolloProvider client={apolloClient}>
+            <Stack sx={{ minHeight: "100vh" }}>
+              <Header />
+              <Container
+                maxWidth="lg"
+                sx={{ flexGrow: 1, position: "relative" }}
+              >
+                <Component {...pageProps} />
+              </Container>
+              <Footer />
+            </Stack>
+          </ApolloProvider>
         </SessionProvider>
       </ThemeProvider>
     </CacheProvider>
