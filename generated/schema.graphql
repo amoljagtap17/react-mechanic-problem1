@@ -17,20 +17,35 @@ type Building {
 }
 
 type Capacity {
+  """Building Details"""
+  building: Building
+
   """Building ID"""
   buildingId: String!
+
+  """Capacity"""
+  capacity: Int!
 
   """Created Date"""
   createdAt: DateTime!
 
+  """Division Details"""
+  division: Division
+
   """Division ID"""
   divisionId: String!
+
+  """Floor Details"""
+  floor: Floor
 
   """Floor ID"""
   floorId: String!
 
   """ID of the Seat"""
   id: String!
+
+  """Wing Details"""
+  wing: Wing
 
   """Wing ID"""
   wingId: String!

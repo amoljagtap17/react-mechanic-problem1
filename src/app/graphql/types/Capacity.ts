@@ -9,6 +9,51 @@ export const Capacity = objectType({
     t.nonNull.string("buildingId", { description: "Building ID" });
     t.nonNull.string("floorId", { description: "Floor ID" });
     t.nonNull.string("wingId", { description: "Wing ID" });
+    t.nonNull.int("capacity", { description: "Capacity" });
+    t.field("division", {
+      description: "Division Details",
+      type: "Division",
+      async resolve(parent, _args, { prisma }) {
+        return await prisma.division.findUnique({
+          where: {
+            id: parent.divisionId,
+          },
+        });
+      },
+    });
+    t.field("building", {
+      description: "Building Details",
+      type: "Building",
+      async resolve(parent, _args, { prisma }) {
+        return await prisma.building.findUnique({
+          where: {
+            id: parent.buildingId,
+          },
+        });
+      },
+    });
+    t.field("floor", {
+      description: "Floor Details",
+      type: "Floor",
+      async resolve(parent, _args, { prisma }) {
+        return await prisma.floor.findUnique({
+          where: {
+            id: parent.floorId,
+          },
+        });
+      },
+    });
+    t.field("wing", {
+      description: "Wing Details",
+      type: "Wing",
+      async resolve(parent, _args, { prisma }) {
+        return await prisma.wing.findUnique({
+          where: {
+            id: parent.wingId,
+          },
+        });
+      },
+    });
   },
 });
 

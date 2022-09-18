@@ -58,6 +58,7 @@ export interface NexusGenObjects {
   }
   Capacity: { // root type
     buildingId: string; // String!
+    capacity: number; // Int!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     divisionId: string; // String!
     floorId: string; // String!
@@ -120,11 +121,16 @@ export interface NexusGenFieldTypes {
     id: string; // String!
   }
   Capacity: { // field return type
+    building: NexusGenRootTypes['Building'] | null; // Building
     buildingId: string; // String!
+    capacity: number; // Int!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
+    division: NexusGenRootTypes['Division'] | null; // Division
     divisionId: string; // String!
+    floor: NexusGenRootTypes['Floor'] | null; // Floor
     floorId: string; // String!
     id: string; // String!
+    wing: NexusGenRootTypes['Wing'] | null; // Wing
     wingId: string; // String!
   }
   Department: { // field return type
@@ -191,11 +197,16 @@ export interface NexusGenFieldTypeNames {
     id: 'String'
   }
   Capacity: { // field return type name
+    building: 'Building'
     buildingId: 'String'
+    capacity: 'Int'
     createdAt: 'DateTime'
+    division: 'Division'
     divisionId: 'String'
+    floor: 'Floor'
     floorId: 'String'
     id: 'String'
+    wing: 'Wing'
     wingId: 'String'
   }
   Department: { // field return type name

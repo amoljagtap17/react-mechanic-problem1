@@ -6,50 +6,47 @@ import {
   IconButton,
 } from "@mui/material";
 import { Delete as DeleteIcon } from "@mui/icons-material";
+import { useCapacityData } from "./useAllocationData";
 
 export const AllocationList = () => {
+  const getCapacityData = useCapacityData();
+
+  if (getCapacityData.loading) {
+    return <h1>loading...</h1>;
+  }
+
+  const { capacity } = getCapacityData.data;
+
   return (
     <List>
-      <ListItem
-        divider
-        secondaryAction={
-          <IconButton edge="end" aria-label="delete">
-            <DeleteIcon />
-          </IconButton>
-        }
-      >
-        <ListItemText
-          primary="AB"
-          secondary={
-            <>
-              <Typography variant="body2">Building: Building 1</Typography>
-              <Typography variant="body2">Floor: Floor 1</Typography>
-              <Typography variant="body2">Wing: Wing 1</Typography>
-              <Typography variant="body2">Allocated: 200</Typography>
-            </>
-          }
-        />
-      </ListItem>
-      <ListItem
-        divider
-        secondaryAction={
-          <IconButton edge="end" aria-label="delete">
-            <DeleteIcon />
-          </IconButton>
-        }
-      >
-        <ListItemText
-          primary="XY"
-          secondary={
-            <>
-              <Typography variant="body2">Building: Building 1</Typography>
-              <Typography variant="body2">Floor: Floor 1</Typography>
-              <Typography variant="body2">Wing: Wing 1</Typography>
-              <Typography variant="body2">Allocated: 200</Typography>
-            </>
-          }
-        />
-      </ListItem>
+      {capacity.map(
+        ({ id, division, building, floor, wing, capacity }: any) => (
+          <ListItem
+            divider
+            secondaryAction={
+              <IconButton edge="end" aria-label="delete">
+                <DeleteIcon />
+              </IconButton>
+            }
+          >
+            <ListItemText
+              primary={division.divisionName}
+              secondary={
+                <>
+                  <Typography variant="body2">
+                    Building: {building.buildingName}
+                  </Typography>
+                  <Typography variant="body2">
+                    Floor: {floor.floorNo}
+                  </Typography>
+                  <Typography variant="body2">Wing: {wing.wingName}</Typography>
+                  <Typography variant="body2">Allocated: {capacity}</Typography>
+                </>
+              }
+            />
+          </ListItem>
+        )
+      )}
     </List>
   );
 };
