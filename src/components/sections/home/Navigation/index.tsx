@@ -1,4 +1,5 @@
 import { useState, SyntheticEvent } from "react";
+import { useSession } from "next-auth/react";
 import { Box, Tabs, Tab } from "@mui/material";
 import { TabPanel } from "components/lib";
 import { Dashboard, Allocations, Bookings } from "components/sections";
@@ -12,6 +13,11 @@ const a11yProps = (index: number) => {
 
 export const Navigation = () => {
   const [value, setValue] = useState(0);
+  const { data: session } = useSession();
+
+  console.log("session::", { session });
+
+  const role = session?.user.role;
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -26,19 +32,25 @@ export const Navigation = () => {
           aria-label="navigation tabs"
         >
           <Tab label="Dashboard" {...a11yProps(0)} />
-          <Tab label="Allocations" {...a11yProps(1)} />
-          <Tab label="Bookings" {...a11yProps(2)} />
+          {(role === "ADMIN" || role === "CENTRAL") && (
+            <Tab label="Allocations" {...a11yProps(1)} />
+          )}
+          {role === "USER" && <Tab label="Bookings" {...a11yProps(2)} />}
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
         <Dashboard />
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Allocations />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Bookings />
-      </TabPanel>
+      {(role === "ADMIN" || role === "CENTRAL") && (
+        <TabPanel value={value} index={1}>
+          <Allocations />
+        </TabPanel>
+      )}
+      {role === "USER" && (
+        <TabPanel value={value} index={2}>
+          <Bookings />
+        </TabPanel>
+      )}
     </Box>
   );
 };
