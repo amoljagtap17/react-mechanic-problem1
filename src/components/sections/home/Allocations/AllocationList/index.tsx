@@ -22,6 +22,7 @@ export const AllocationList = () => {
       {capacity.map(
         ({ id, division, building, floor, wing, capacity }: any) => (
           <ListItem
+            key={id}
             divider
             secondaryAction={
               <IconButton edge="end" aria-label="delete">
@@ -33,14 +34,18 @@ export const AllocationList = () => {
               primary={division.divisionName}
               secondary={
                 <>
-                  <Typography variant="body2">
+                  <Typography variant="body2" component="span" display="block">
                     Building: {building.buildingName}
                   </Typography>
-                  <Typography variant="body2">
+                  <Typography variant="body2" component="span" display="block">
                     Floor: {floor.floorNo}
                   </Typography>
-                  <Typography variant="body2">Wing: {wing.wingName}</Typography>
-                  <Typography variant="body2">Allocated: {capacity}</Typography>
+                  <Typography variant="body2" component="span" display="block">
+                    Wing: {wing.wingName}
+                  </Typography>
+                  <Typography variant="body2" component="span" display="block">
+                    Allocated: {capacity}
+                  </Typography>
                 </>
               }
             />

@@ -19,5 +19,11 @@ export const SeatQuery = extendType({
         return prisma.seat.findMany();
       },
     });
+    t.nonNull.int("seatCount", {
+      description: "Get all Seats count",
+      resolve(_parent, _args, { prisma }) {
+        return prisma.seat.count();
+      },
+    });
   },
 });

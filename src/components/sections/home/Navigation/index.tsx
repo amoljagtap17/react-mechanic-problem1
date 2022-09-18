@@ -15,8 +15,6 @@ export const Navigation = () => {
   const [value, setValue] = useState(0);
   const { data: session } = useSession();
 
-  console.log("session::", { session });
-
   const role = session?.user.role;
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {

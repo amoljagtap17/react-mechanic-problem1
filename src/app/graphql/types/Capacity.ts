@@ -54,6 +54,17 @@ export const Capacity = objectType({
         });
       },
     });
+    t.field("assignedCapacity", {
+      description: "Assigned Capacity",
+      type: "Int",
+      async resolve(_parent, _args, { prisma }) {
+        const data = await prisma.capacity.aggregate({
+          _sum: { capacity: true },
+        });
+
+        return data._sum.capacity;
+      },
+    });
   },
 });
 

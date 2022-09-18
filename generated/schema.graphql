@@ -17,6 +17,9 @@ type Building {
 }
 
 type Capacity {
+  """Assigned Capacity"""
+  assignedCapacity: Int
+
   """Building Details"""
   building: Building
 
@@ -127,6 +130,9 @@ type Query {
 
   """Get all Floors details"""
   floors: [Floor!]!
+
+  """Get all Seats count"""
+  seatCount: Int!
 
   """Get all Seats details"""
   seats: [Seat!]!
