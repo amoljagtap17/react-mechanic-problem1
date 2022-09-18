@@ -49,7 +49,17 @@ export interface NexusGenObjects {
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
   }
+  Floor: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    floorNo: number; // Int!
+    id: string; // String!
+  }
   Query: {};
+  Seat: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    seatNumber: string; // String!
+  }
   User: { // root type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     email?: string | null; // String
@@ -57,6 +67,11 @@ export interface NexusGenObjects {
     id: string; // String!
     image?: string | null; // String
     name?: string | null; // String
+  }
+  Wing: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    wingName: string; // String!
   }
 }
 
@@ -76,9 +91,24 @@ export interface NexusGenFieldTypes {
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
   }
+  Floor: { // field return type
+    building: NexusGenRootTypes['Building'] | null; // Building
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    floorNo: number; // Int!
+    id: string; // String!
+  }
   Query: { // field return type
     buildings: NexusGenRootTypes['Building'][]; // [Building!]!
+    floors: NexusGenRootTypes['Floor'][]; // [Floor!]!
+    seats: NexusGenRootTypes['Seat'][]; // [Seat!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
+    wings: NexusGenRootTypes['Wing'][]; // [Wing!]!
+  }
+  Seat: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: string; // String!
+    seatNumber: string; // String!
+    wing: NexusGenRootTypes['Wing'] | null; // Wing
   }
   User: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -88,6 +118,12 @@ export interface NexusGenFieldTypes {
     image: string | null; // String
     name: string | null; // String
   }
+  Wing: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    floor: NexusGenRootTypes['Floor'] | null; // Floor
+    id: string; // String!
+    wingName: string; // String!
+  }
 }
 
 export interface NexusGenFieldTypeNames {
@@ -96,9 +132,24 @@ export interface NexusGenFieldTypeNames {
     createdAt: 'DateTime'
     id: 'String'
   }
+  Floor: { // field return type name
+    building: 'Building'
+    createdAt: 'DateTime'
+    floorNo: 'Int'
+    id: 'String'
+  }
   Query: { // field return type name
     buildings: 'Building'
+    floors: 'Floor'
+    seats: 'Seat'
     users: 'User'
+    wings: 'Wing'
+  }
+  Seat: { // field return type name
+    createdAt: 'DateTime'
+    id: 'String'
+    seatNumber: 'String'
+    wing: 'Wing'
   }
   User: { // field return type name
     createdAt: 'DateTime'
@@ -107,6 +158,12 @@ export interface NexusGenFieldTypeNames {
     id: 'String'
     image: 'String'
     name: 'String'
+  }
+  Wing: { // field return type name
+    createdAt: 'DateTime'
+    floor: 'Floor'
+    id: 'String'
+    wingName: 'String'
   }
 }
 

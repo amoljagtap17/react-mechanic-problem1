@@ -73,7 +73,7 @@ model Floor {
   id         String    @id @default(auto()) @map("_id") @db.ObjectId
   floorNo    Int       @unique
   createdAt  DateTime  @default(now()) @map("created_at")
-  Building   Building? @relation(fields: [buildingId], references: [id])
+  building   Building? @relation(fields: [buildingId], references: [id])
   buildingId String?   @db.ObjectId
   wings      Wing[]
 
@@ -84,7 +84,7 @@ model Wing {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   wingName  String   @unique
   createdAt DateTime @default(now()) @map("created_at")
-  Floor     Floor?   @relation(fields: [floorId], references: [id])
+  floor     Floor?   @relation(fields: [floorId], references: [id])
   floorId   String?  @db.ObjectId
   seats     Seat[]
 
@@ -95,7 +95,7 @@ model Seat {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   seatNumber String   @unique
   createdAt  DateTime @default(now()) @map("created_at")
-  Wing       Wing?    @relation(fields: [wingId], references: [id])
+  wing       Wing?    @relation(fields: [wingId], references: [id])
   wingId     String?  @db.ObjectId
 
   @@map("seats")

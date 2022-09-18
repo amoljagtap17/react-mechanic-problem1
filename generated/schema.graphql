@@ -18,9 +18,46 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTime
 
+type Floor {
+  """Building details"""
+  building: Building
+
+  """Created Date"""
+  createdAt: DateTime!
+
+  """Floor Number"""
+  floorNo: Int!
+
+  """ID of the Floor"""
+  id: String!
+}
+
 type Query {
   buildings: [Building!]!
+
+  """Get all Floors details"""
+  floors: [Floor!]!
+
+  """Get all Seats details"""
+  seats: [Seat!]!
   users: [User!]!
+
+  """Get all Wings details"""
+  wings: [Wing!]!
+}
+
+type Seat {
+  """Created Date"""
+  createdAt: DateTime!
+
+  """ID of the Seat"""
+  id: String!
+
+  """Seat Number"""
+  seatNumber: String!
+
+  """Wing details"""
+  wing: Wing
 }
 
 type User {
@@ -41,4 +78,18 @@ type User {
 
   """Name of the user"""
   name: String
+}
+
+type Wing {
+  """Created Date"""
+  createdAt: DateTime!
+
+  """Floor details"""
+  floor: Floor
+
+  """ID of the Wing"""
+  id: String!
+
+  """Name of the Wing"""
+  wingName: String!
 }
