@@ -59,3 +59,44 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map("verificationtokens")
 }
+
+model Building {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  buildingName String   @unique
+  createdAt    DateTime @default(now()) @map("created_at")
+  floors       Floor[]
+
+  @@map("buildings")
+}
+
+model Floor {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  floorNo    Int       @unique
+  createdAt  DateTime  @default(now()) @map("created_at")
+  Building   Building? @relation(fields: [buildingId], references: [id])
+  buildingId String?   @db.ObjectId
+  wings      Wing[]
+
+  @@map("floors")
+}
+
+model Wing {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  wingName  String   @unique
+  createdAt DateTime @default(now()) @map("created_at")
+  Floor     Floor?   @relation(fields: [floorId], references: [id])
+  floorId   String?  @db.ObjectId
+  seats     Seat[]
+
+  @@map("wings")
+}
+
+model Seat {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  seatNumber String   @unique
+  createdAt  DateTime @default(now()) @map("created_at")
+  Wing       Wing?    @relation(fields: [wingId], references: [id])
+  wingId     String?  @db.ObjectId
+
+  @@map("seats")
+}
