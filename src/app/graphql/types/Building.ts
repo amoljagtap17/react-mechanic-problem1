@@ -9,6 +9,17 @@ export const Building = objectType({
     t.nonNull.string("id", { description: "ID of the Building" });
     t.nonNull.string("buildingName", { description: "Name of the Building" });
     t.nonNull.date("createdAt", { description: "Created Date" });
+    t.nonNull.list.nonNull.field("floors", {
+      description: "All the floors associated to the Building",
+      type: "Floor",
+      async resolve(parent, _args, { prisma }) {
+        return await prisma.floor.findMany({
+          where: {
+            buildingId: parent.id,
+          },
+        });
+      },
+    });
   },
 });
 

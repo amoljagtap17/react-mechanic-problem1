@@ -89,13 +89,14 @@ export interface NexusGenFieldTypes {
   Building: { // field return type
     buildingName: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
+    floors: NexusGenRootTypes['Floor'][]; // [Floor!]!
     id: string; // String!
   }
   Floor: { // field return type
-    building: NexusGenRootTypes['Building'] | null; // Building
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     floorNo: number; // Int!
     id: string; // String!
+    wings: NexusGenRootTypes['Wing'][]; // [Wing!]!
   }
   Query: { // field return type
     buildings: NexusGenRootTypes['Building'][]; // [Building!]!
@@ -108,7 +109,6 @@ export interface NexusGenFieldTypes {
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: string; // String!
     seatNumber: string; // String!
-    wing: NexusGenRootTypes['Wing'] | null; // Wing
   }
   User: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -120,8 +120,8 @@ export interface NexusGenFieldTypes {
   }
   Wing: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
-    floor: NexusGenRootTypes['Floor'] | null; // Floor
     id: string; // String!
+    seats: NexusGenRootTypes['Seat'][]; // [Seat!]!
     wingName: string; // String!
   }
 }
@@ -130,13 +130,14 @@ export interface NexusGenFieldTypeNames {
   Building: { // field return type name
     buildingName: 'String'
     createdAt: 'DateTime'
+    floors: 'Floor'
     id: 'String'
   }
   Floor: { // field return type name
-    building: 'Building'
     createdAt: 'DateTime'
     floorNo: 'Int'
     id: 'String'
+    wings: 'Wing'
   }
   Query: { // field return type name
     buildings: 'Building'
@@ -149,7 +150,6 @@ export interface NexusGenFieldTypeNames {
     createdAt: 'DateTime'
     id: 'String'
     seatNumber: 'String'
-    wing: 'Wing'
   }
   User: { // field return type name
     createdAt: 'DateTime'
@@ -161,8 +161,8 @@ export interface NexusGenFieldTypeNames {
   }
   Wing: { // field return type name
     createdAt: 'DateTime'
-    floor: 'Floor'
     id: 'String'
+    seats: 'Seat'
     wingName: 'String'
   }
 }

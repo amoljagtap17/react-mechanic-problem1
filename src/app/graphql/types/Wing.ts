@@ -6,15 +6,15 @@ export const Wing = objectType({
     t.nonNull.string("id", { description: "ID of the Wing" });
     t.nonNull.string("wingName", { description: "Name of the Wing" });
     t.nonNull.date("createdAt", { description: "Created Date" });
-    t.field("floor", {
-      type: "Floor",
-      description: "Floor details",
+    t.nonNull.list.nonNull.field("seats", {
+      description: "All the seats associated to the Wing",
+      type: "Seat",
       async resolve(parent, _args, { prisma }) {
-        return await prisma.wing
-          .findUnique({
-            where: { id: parent.id },
-          })
-          .Floor();
+        return await prisma.seat.findMany({
+          where: {
+            wingId: parent.id,
+          },
+        });
       },
     });
   },

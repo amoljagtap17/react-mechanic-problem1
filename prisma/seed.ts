@@ -54,6 +54,7 @@ async function main() {
           await prisma.seat.create({
             data: {
               seatNumber: `${wing.wingName}-${i.toString().padStart(3, "0")}`,
+              wingId: wing.id,
             },
           });
         }

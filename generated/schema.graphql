@@ -9,6 +9,9 @@ type Building {
   """Created Date"""
   createdAt: DateTime!
 
+  """All the floors associated to the Building"""
+  floors: [Floor!]!
+
   """ID of the Building"""
   id: String!
 }
@@ -19,9 +22,6 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 scalar DateTime
 
 type Floor {
-  """Building details"""
-  building: Building
-
   """Created Date"""
   createdAt: DateTime!
 
@@ -30,6 +30,9 @@ type Floor {
 
   """ID of the Floor"""
   id: String!
+
+  """All the wings associated to the Floor"""
+  wings: [Wing!]!
 }
 
 type Query {
@@ -55,9 +58,6 @@ type Seat {
 
   """Seat Number"""
   seatNumber: String!
-
-  """Wing details"""
-  wing: Wing
 }
 
 type User {
@@ -84,11 +84,11 @@ type Wing {
   """Created Date"""
   createdAt: DateTime!
 
-  """Floor details"""
-  floor: Floor
-
   """ID of the Wing"""
   id: String!
+
+  """All the seats associated to the Wing"""
+  seats: [Seat!]!
 
   """Name of the Wing"""
   wingName: String!
