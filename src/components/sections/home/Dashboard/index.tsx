@@ -5,7 +5,7 @@ export const Dashboard = () => {
   return (
     <Grid container spacing={4}>
       <Grid item xs={12} md={4}>
-        <StatsCard label="Available Capacity" count={1000} />
+        <StatsCard label="Available Seats" count={650} />
       </Grid>
       <Grid item xs={12} md={4}>
         <StatsCard label="Current Allocations" count={400} />

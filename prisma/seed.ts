@@ -13,16 +13,70 @@ async function main() {
   await prisma.floor.deleteMany();
   await prisma.wing.deleteMany();
   await prisma.seat.deleteMany();
+  await prisma.department.deleteMany();
+  await prisma.division.deleteMany();
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 1; i < 5; i++) {
+    await prisma.division.create({
+      data: {
+        divisionName: `division-${i}`,
+      },
+    });
+  }
+
+  const divisionIds = await prisma.division.findMany({ select: { id: true } });
+
+  const codes = ["MB", "MC", "MQ", "MR", "MJ"];
+
+  for (let i = 0; i < codes.length; i++) {
+    const divisionId = divisionIds[i > 3 ? i - 4 : i].id;
+
+    console.log("divisionId::", divisionId);
+
+    const level1Department = await prisma.department.create({
+      data: {
+        departmentName: codes[i],
+        divisionId,
+      },
+    });
+
+    for (let i = 0; i < 10; i++) {
+      const level2Department = await prisma.department.create({
+        data: {
+          departmentName: level1Department.departmentName + "A",
+          divisionId: level1Department.divisionId,
+        },
+      });
+
+      for (let i = 0; i < 30; i++) {
+        await prisma.department.create({
+          data: {
+            departmentName: level2Department.departmentName + "D",
+            divisionId: level2Department.divisionId,
+          },
+        });
+      }
+    }
+  }
+
+  const departments = await prisma.department.findMany();
+  const totalDepartments = departments.length;
+
+  console.log("seeding users...");
+
+  for (let i = 0; i < 100; i++) {
     await prisma.user.create({
       data: {
         email: faker.internet.email().toLowerCase(),
         image: faker.internet.avatar(),
         name: faker.name.fullName(),
+        departmentId:
+          departments[Math.floor(Math.random() * totalDepartments)].id,
       },
     });
   }
+
+  console.log("seeding buildings and seats...");
 
   for (let i = 1; i < 2; i++) {
     const building = await prisma.building.create({
