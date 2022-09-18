@@ -77,6 +77,7 @@ export interface NexusGenObjects {
     id: string; // String!
     image?: string | null; // String
     name?: string | null; // String
+    role: string; // String!
   }
   Wing: { // root type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -127,6 +128,7 @@ export interface NexusGenFieldTypes {
     divisions: NexusGenRootTypes['Division'][]; // [Division!]!
     floors: NexusGenRootTypes['Floor'][]; // [Floor!]!
     seats: NexusGenRootTypes['Seat'][]; // [Seat!]!
+    super_users: NexusGenRootTypes['User'][]; // [User!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
     wings: NexusGenRootTypes['Wing'][]; // [Wing!]!
   }
@@ -143,6 +145,7 @@ export interface NexusGenFieldTypes {
     id: string; // String!
     image: string | null; // String
     name: string | null; // String
+    role: string; // String!
   }
   Wing: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -184,6 +187,7 @@ export interface NexusGenFieldTypeNames {
     divisions: 'Division'
     floors: 'Floor'
     seats: 'Seat'
+    super_users: 'User'
     users: 'User'
     wings: 'Wing'
   }
@@ -200,6 +204,7 @@ export interface NexusGenFieldTypeNames {
     id: 'String'
     image: 'String'
     name: 'String'
+    role: 'String'
   }
   Wing: { // field return type name
     createdAt: 'DateTime'

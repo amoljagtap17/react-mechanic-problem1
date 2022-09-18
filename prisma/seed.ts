@@ -1,4 +1,4 @@
-import { PrismaClient, Role } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { faker } from "@faker-js/faker";
 
 const prisma = new PrismaClient();
@@ -110,7 +110,7 @@ async function main() {
     if (admin) {
       await prisma.user.update({
         data: {
-          role: Role.ADMIN,
+          role: "ADMIN",
         },
         where: {
           id: admin.id,
@@ -123,13 +123,20 @@ async function main() {
 
   console.log("seeding central team user...");
 
+  const centralDepartment = await prisma.department.create({
+    data: {
+      departmentName: "CEN",
+      divisionId: centralDivision.id,
+    },
+  });
+
   await prisma.user.create({
     data: {
       email: faker.internet.email().toLowerCase(),
       image: faker.internet.avatar(),
       name: faker.name.fullName(),
-      departmentId: centralDivision.id,
-      role: Role.CENTRAL,
+      departmentId: centralDepartment.id,
+      role: "CENTRAL",
     },
   });
 

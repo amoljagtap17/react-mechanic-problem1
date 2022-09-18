@@ -80,6 +80,7 @@ type Query {
 
   """Get all Seats details"""
   seats: [Seat!]!
+  super_users: [User!]!
   users: [User!]!
 
   """Get all Wings details"""
@@ -118,6 +119,9 @@ type User {
 
   """Name of the user"""
   name: String
+
+  """Role for the user"""
+  role: String!
 }
 
 type Wing {

@@ -54,7 +54,7 @@ model User {
   sessions      Session[]
   department    Department @relation(fields: [departmentId], references: [id])
   departmentId  String     @db.ObjectId
-  role          Role       @default(USER)
+  role          String     @default("USER")
 
   @@map("users")
 }

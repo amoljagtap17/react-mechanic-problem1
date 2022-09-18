@@ -9,6 +9,9 @@ export const User = objectType({
     t.string("image", { description: "Image of the user" });
     t.nonNull.date("createdAt", { description: "Created Date" });
     t.date("emailVerified", { description: "Email verified Date" });
+    t.nonNull.string("role", {
+      description: "Role for the user",
+    });
     t.field("department", {
       description: "Department Info",
       type: "Department",
@@ -32,6 +35,19 @@ export const UserQuery = extendType({
       type: "User",
       resolve(_parent, _args, { prisma }) {
         return prisma.user.findMany();
+      },
+    });
+
+    t.nonNull.list.nonNull.field("super_users", {
+      type: "User",
+      resolve(_parent, _args, { prisma }) {
+        return prisma.user.findMany({
+          where: {
+            role: {
+              not: "USER",
+            },
+          },
+        });
       },
     });
   },
