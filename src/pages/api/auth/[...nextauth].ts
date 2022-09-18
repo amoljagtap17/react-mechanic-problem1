@@ -1,3 +1,4 @@
+// @ts-nocheck
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
@@ -8,13 +9,16 @@ export default NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
-      // @ts-ignore
-      async authorize(credentials, req) {
-        console.log("authorize", { credentials });
+      async authorize(credentials, _req) {
+        const { email } = credentials;
 
-        // get user from db for credentials.email
+        const user = await prisma.user.findUnique({
+          where: {
+            email,
+          },
+        });
 
-        return credentials;
+        return user;
       },
     }),
   ],

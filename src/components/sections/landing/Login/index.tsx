@@ -19,7 +19,10 @@ export const Login = () => {
         <Button
           variant="contained"
           onClick={() =>
-            signIn("credentials", { email: "u", callbackUrl: "/home" })
+            signIn("credentials", {
+              email: "Stephon.Russel42@hotmail.com",
+              callbackUrl: "/home",
+            })
           }
         >
           Login
